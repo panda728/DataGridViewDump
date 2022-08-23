@@ -2,6 +2,10 @@
 
 DataGridView to ExcelFile demo.
 
+## Sample
+
+![image](https://user-images.githubusercontent.com/16958552/186148469-1d721265-357f-4f95-8ba7-0ed059f24e76.png)
+
 ## Excel file creation process
 
 ~~~
