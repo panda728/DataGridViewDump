@@ -17,14 +17,6 @@ ExportDataGridViewToExcel(dataGridView1, saveFileDialog1.FileName);
 ## Overview
 
 ~~~
-readonly IExcelSerializerProvider _dataGridViewExcelProvider
-    = ExcelSerializerProvider.Create(
-        new[] { new DataGridViewExcelSerializer() },
-        new[] { ExcelSerializerProvider.Default });
-
-~~~
-
-~~~
 private void ExportDataGridViewToExcel(DataGridView dataGridView, string fileName)
 {
     var titles = dataGridView.Columns.Cast<DataGridViewColumn>()
@@ -41,6 +33,14 @@ private void ExportDataGridViewToExcel(DataGridView dataGridView, string fileNam
 
     ExcelSerializer.ToFile(dataGridView1.Rows.Cast<DataGridViewRow>(), fileName, newConfig);
 }
+~~~
+
+~~~
+readonly IExcelSerializerProvider _dataGridViewExcelProvider
+    = ExcelSerializerProvider.Create(
+        new[] { new DataGridViewExcelSerializer() },
+        new[] { ExcelSerializerProvider.Default });
+
 ~~~
 
 ~~~
