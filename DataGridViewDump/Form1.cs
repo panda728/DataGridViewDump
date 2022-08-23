@@ -1,6 +1,7 @@
 using FakeExcelSerializer;
 using System.Diagnostics;
 using System.Globalization;
+using static System.Windows.Forms.Design.AxImporter;
 
 namespace DataGridViewDump
 {
@@ -64,6 +65,15 @@ namespace DataGridViewDump
             };
 
             ExcelSerializer.ToFile(dataGridView1.Rows.Cast<DataGridViewRow>(), fileName, newConfig);
+
+            //foreach (var row in dataGridView1.Rows.Cast<DataGridViewRow>())
+            //{
+            //    foreach (var c in row.Cells.Cast<DataGridViewCell>())
+            //    {
+            //        Debug.Write($"{c.Value},");
+            //    }
+            //    Debug.WriteLine("");
+            //}
         }
     }
 
