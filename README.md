@@ -6,6 +6,8 @@ DataGridView to ExcelFile demo.
 
 ![image](https://user-images.githubusercontent.com/16958552/186148469-1d721265-357f-4f95-8ba7-0ed059f24e76.png)
 
+![image](https://user-images.githubusercontent.com/16958552/186148816-5c4ac74e-59df-46fd-91c6-7446cfa830a1.png)
+
 ## Excel file creation process
 
 ~~~
