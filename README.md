@@ -22,15 +22,11 @@ ExportDataGridViewToExcel(dataGridView1, saveFileDialog1.FileName);
 ~~~
 private void ExportDataGridViewToExcel(DataGridView dataGridView, string fileName)
 {
-    var titles = dataGridView.Columns.Cast<DataGridViewColumn>()
-        .Select(c => c.HeaderText).ToArray();
-
     var newConfig = ExcelSerializerOptions.Default with
     {
         CultureInfo = CultureInfo.CurrentCulture,
         Provider = _dataGridViewExcelProvider,
         HasHeaderRecord = true,
-        HeaderTitles = titles,
         AutoFitColumns = false,
     };
 
