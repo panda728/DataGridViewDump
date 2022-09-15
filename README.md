@@ -14,52 +14,27 @@ https://github.com/panda728/FakeExcelSerializer
 ## Excel file creation process
 
 ~~~
-ExportDataGridViewToExcel(dataGridView1, saveFileDialog1.FileName);
+    saveFileDialog1.FileName = "datagridviewdump.xlsx";
+    if (saveFileDialog1.ShowDialog() != DialogResult.OK)
+        return;
+
+    dataGridView1.ToExcelFile(saveFileDialog1.FileName);
 ~~~
 
 ## Overview
 
+DumpExcelHelper.cs
 ~~~
-private void ExportDataGridViewToExcel(DataGridView dataGridView, string fileName)
+var newConfig = ExcelSerializerOptions.Default with
 {
-    var newConfig = ExcelSerializerOptions.Default with
-    {
-        CultureInfo = CultureInfo.CurrentCulture,
-        Provider = _dataGridViewExcelProvider,
-        HasHeaderRecord = true,
-        AutoFitColumns = false,
-    };
-
-    ExcelSerializer.ToFile(dataGridView1.Rows.Cast<DataGridViewRow>(), fileName, newConfig);
-}
-~~~
-
-~~~
-readonly IExcelSerializerProvider _dataGridViewExcelProvider
-    = ExcelSerializerProvider.Create(
-        new[] { new DataGridViewExcelSerializer() },
-        new[] { ExcelSerializerProvider.Default });
-
-~~~
-
-~~~
-public class DataGridViewExcelSerializer : IExcelSerializer<DataGridViewRow>
-{
-    public void WriteTitle(ref ExcelSerializerWriter writer, DataGridViewRow value, ExcelSerializerOptions options, string name)
-    {
-        var serializer = options.GetRequiredSerializer<object>();
-        var columns = value.Cells.Cast<DataGridViewCell>().ToArray().AsSpan();
-        foreach (var c in columns)
-            serializer.Serialize(ref writer, c.OwningColumn.HeaderText, options);
-    }
-    public void Serialize(ref ExcelSerializerWriter writer, DataGridViewRow value, ExcelSerializerOptions options)
-    {
-        var serializer = options.GetRequiredSerializer<object>();
-        var columns = value.Cells.Cast<DataGridViewCell>().ToArray().AsSpan();
-        foreach (var c in columns)
-            serializer.Serialize(ref writer, c.Value, options);
-    }
-}
+    Provider = _dataGridViewExcelProvider,
+    CultureInfo = CultureInfo.CurrentCulture,
+    HasHeaderRecord = hasHeaderRecord || (headerTitles?.Any() ?? false),
+    HeaderTitles = headerTitles ?? Array.Empty<string>(),
+    AutoFitColumns = autoFitColumns,
+    NumberFormat = "#,##0.000;[Red]\\-#,##0.000",
+};
+ExcelSerializer.ToFile(value, fileName, newConfig);
 ~~~
 
 ## License
