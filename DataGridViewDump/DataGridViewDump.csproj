@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FakeCsvSerializer" Version="1.3.2" />
     <PackageReference Include="FakeExcelSerializer" Version="1.3.2" />
   </ItemGroup>
 
