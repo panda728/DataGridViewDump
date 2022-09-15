@@ -1,6 +1,6 @@
 # DataGridViewDump
 
-DataGridView to ExcelFile demo.
+Output the contents of a DataGridView to an Excel file. Supports reordering of data and replacement of columns.
 
 ## Sample
 
